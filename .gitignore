@@ -1,0 +1,10 @@
+__pycache__/
+*.faiss
+*.json
+*.log
+*.zip
+*.tar.gz
+venv/
+.env/
+*.ipynb_checkpoints/
+sample_logs/
