@@ -6,5 +6,6 @@ __pycache__/
 *.tar.gz
 venv/
 .env/
+.venv/
 *.ipynb_checkpoints/
 sample_logs/
