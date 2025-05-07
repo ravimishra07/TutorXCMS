@@ -122,7 +122,7 @@ export type TutorProfile = {
     subjects_taught: string[];
     fee_range: string;
     qualification: string;
-    student_ids: string[];
+    student_ids: string[]; // Array of student references
     is_active: boolean;
     is_verified: boolean;
 };
@@ -202,9 +202,13 @@ export const tutorProfileSchema = buildSchema<TutorProfile>({
             dataType: "string"
         },
         student_ids: {
-            title: "Student IDs",
+            title: "Assigned Students",
             dataType: "array",
-            of: { dataType: "string" }
+            of: {
+                dataType: "reference",
+                path: "students",
+                previewProperties: ["student_id", "name", "class"]
+            }
         },
         is_active: {
             title: "Is Active",
