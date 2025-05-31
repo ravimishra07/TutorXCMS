@@ -1,53 +1,58 @@
-package com.ravi.tuitionapp.data
+package com.ravi.tuitionapp.shared.data
 
-import com.google.gson.annotations.SerializedName
-import java.util.Date
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.datetime.LocalDate
 
+@Serializable
 data class StudentProfile(
-    @SerializedName("student_id")
+    @SerialName("student_id")
     val studentId: String = "",
     
     val name: String = "",
     
-    @SerializedName("class")
+    @SerialName("class")
     val studentClass: Int = 0,
     
     val board: String = "",
-    val course: Any? = null, // Firestore reference
+    val course: String? = null, // Reference to course ID
     val location: String? = null,
     val mob: String = "",
     val email: String = "",
     val stream: String = "",
     val subjects: List<String> = emptyList(),
     
-    @SerializedName("assigned_tutor")
+    @SerialName("assigned_tutor")
     val assignedTutor: String = "",
     
-    @SerializedName("admission_date")
-    val admissionDate: Date = Date(),
+    @SerialName("admission_date")
+    val admissionDate: LocalDate = LocalDate(2024, 1, 1),
     
     val notes: String = "",
     
-    @SerializedName("is_active")
+    @SerialName("is_active")
     val isActive: Boolean = true,
     
     val progress: Map<String, Map<String, Boolean>> = emptyMap()
 )
 
+@Serializable
 data class Course(
     val id: String = "",
     val board: Board = Board.CBSE,
     
-    @SerializedName("class")
+    @SerialName("class")
     val courseClass: Int = 0,
     
     val syllabus: List<Syllabus> = emptyList()
 )
 
+@Serializable
 enum class Board {
     CBSE, ICSE, State
 }
 
+@Serializable
 data class Syllabus(
     val id: String = "",
     val subject: String = "",
