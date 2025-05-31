@@ -12,11 +12,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,15 +38,42 @@ import androidx.compose.ui.unit.sp
 import com.ravi.tuitionapp.data.TuitionData
 import com.ravi.tuitionapp.data.getDummyHomeData
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(paddingValues: PaddingValues) {
-    Column(modifier = Modifier.padding(paddingValues)) {
+fun Home(
+    modifier: Modifier = Modifier,
+    onStudentsClick: () -> Unit = {}
+) {
+    Column(modifier = modifier) {
         TutorTopBar()
+        
+        // Quick Actions
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                onClick = onStudentsClick,
+                modifier = Modifier.weight(1f),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Text("Students")
+            }
+            
+            Button(
+                onClick = { /* TODO */ },
+                modifier = Modifier.weight(1f),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Text("Tutors")
+            }
+        }
+        
         TuitionListView(getDummyHomeData())
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,12 +82,11 @@ fun TutorTopBar(
     subtitle: String = "YourTag",
 ) {
     Column(modifier = Modifier.padding(horizontal = 12.dp)) {
-
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp), verticalAlignment = Alignment.CenterVertically,
+                .height(56.dp),
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -72,12 +100,8 @@ fun TutorTopBar(
 
         Text("Good Morning", fontSize = 14.sp)
         Spacer(Modifier.height(6.dp))
-
     }
-
-
 }
-
 
 @Composable
 fun TuitionListView(tuitionList: Array<TuitionData>) {
@@ -104,7 +128,6 @@ private fun MainPreview() {
 private fun MainPreView() {
     TuitionListView(getDummyHomeData())
 }
-
 
 @Composable
 fun TuitionCard(tuition: TuitionData) {
