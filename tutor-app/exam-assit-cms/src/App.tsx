@@ -221,6 +221,33 @@ export const tutorProfileSchema = buildSchema<TutorProfile>({
     }
 });
 
+export type TuitionData = {
+    id: number;
+    classes: string[];
+    feesMax?: number;
+    feesMin?: number;
+    location?: string;
+    areaTag?: string;
+    parentMobile?: string;
+    description?: string;
+    isFemaleOnly: boolean;
+};
+
+const tuitionDataSchema = buildSchema<TuitionData>({
+    name: "Tuition Data",
+    properties: {
+        id: { title: "ID", validation: { required: true }, dataType: "number" },
+        classes: { title: "Classes", dataType: "array", of: { dataType: "string" } },
+        feesMax: { title: "Maximum Fees", dataType: "number" },
+        feesMin: { title: "Minimum Fees", dataType: "number" },
+        location: { title: "Location", dataType: "string" },
+        areaTag: { title: "Area Tag", dataType: "string" },
+        parentMobile: { title: "Parent Mobile", dataType: "string" },
+        description: { title: "Description", dataType: "string" },
+        isFemaleOnly: { title: "Female Only", dataType: "boolean" }
+    }
+});
+
 export default function App() {
     const navigation: NavigationBuilder = async ({ user, authController }: NavigationBuilderProps) => {
         return {
@@ -249,6 +276,16 @@ export default function App() {
                     path: "tutors",
                     schema: tutorProfileSchema,
                     name: "Tutors",
+                    permissions: ({ authController }) => ({
+                        edit: true,
+                        create: true,
+                        delete: authController.extra.roles.includes("admin")
+                    })
+                }),
+                buildCollection({
+                    path: "tuition_data",
+                    schema: tuitionDataSchema,
+                    name: "Tuition Data",
                     permissions: ({ authController }) => ({
                         edit: true,
                         create: true,
