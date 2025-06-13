@@ -1,11 +1,71 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.vite/
+dist/
+build/
+*.map
+*.js.map
+.DS_Store
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+sam_logs_cleaned/*.jsonl
+sam_logs_mood_output/
+sam_logs_output/
+
+# Build and cache
+.cache/
+.next/
+.nuxt/
+.temp/
+.tmp/
+coverage/
+.nyc_output/
+
+# System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
 *.faiss
 *.json
-*.log
 *.zip
 *.tar.gz
-venv/
-.env/
-.venv/
 *.ipynb_checkpoints/
 sample_logs/
