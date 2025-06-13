@@ -41,9 +41,6 @@ venv.bak/
 *.log
 *.sqlite
 *.db
-sam_logs_cleaned/*.jsonl
-sam_logs_mood_output/
-sam_logs_output/
 
 # Build and cache
 .cache/
@@ -63,9 +60,7 @@ coverage/
 ehthumbs.db
 Thumbs.db
 
-*.faiss
-*.json
+# Other
 *.zip
 *.tar.gz
 *.ipynb_checkpoints/
-sample_logs/
